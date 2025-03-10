@@ -21,7 +21,8 @@ namespace RandomDrops {
         private void OnNpcKilled(NpcKilledEventArgs args) {
             int itemID = WorldGen.genRand.Next(1, 5079);
             int maxStack = TShock.Utils.GetItemById(itemID).maxStack;
-            int stack = 1;
+            int stack = WorldGen.genRand.Next(1, 4); // Acak 1, 2, atau 3
+stack = Math.Min(stack, maxStack);       // Pastikan tidak melebihi maxStack item aslinya
 
             Item.NewItem(null, (int)args.npc.position.X, (int)args.npc.position.Y, 1, 1, itemID, stack);
         }
